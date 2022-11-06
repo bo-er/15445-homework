@@ -1,13 +1,9 @@
-select 
+SELECT 
     people.name,count(*) cnt 
-from 
+FROM 
     crew 
-left join 
-    people 
-on 
-    people.person_id=crew.person_id 
-group by 
-    people.name 
-order by 
-    cnt 
-DESC limit 20;
+LEFT JOIN 
+    people ON people.person_id=crew.person_id 
+GROUP BY people.name 
+ORDER BY cnt DESC 
+LIMIT 20;

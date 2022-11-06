@@ -1,15 +1,8 @@
-select 
-    akas.title,titles.premiered,titles.runtime_minutes ||' (min)' 
-from 
-    akas 
-left join 
-    titles 
-on 
-    akas.title_id=titles.title_id 
-where 
-    titles.genres 
-like 
-    '%Sci-Fi%' 
-order by 
-    titles.runtime_minutes 
-DESC limit 10;
+SELECT 
+    primary_title,
+    premiered,
+    runtime_minutes ||' (min)' 
+FROM titles
+WHERE genres LIKE '%Sci-Fi%' 
+ORDER BY runtime_minutes DESC 
+LIMIT 10;

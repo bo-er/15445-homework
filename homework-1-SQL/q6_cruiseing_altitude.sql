@@ -1,14 +1,16 @@
-select akas.title,ratings.votes 
-from ratings 
-left join  akas 
-on akas.title_id = ratings.title_id 
-where ratings.title_id 
-in (select crew.title_id 
-    from people 
-    left join crew 
-    on people.person_id=crew.person_id 
-    where people.name 
-    like '%Cruise%' 
-    and people.born ='1962') 
-order by ratings.votes 
-DESC limit 10;
+SELECT 
+    titles.primary_title,
+    ratings.votes 
+FROM ratings 
+INNER JOIN  titles 
+ON titles.title_id = ratings.title_id 
+WHERE ratings.title_id 
+IN (
+    SELECT 
+        crew.title_id 
+    FROM people 
+    INNER JOIN crew ON people.person_id=crew.person_id 
+    WHERE people.name LIKE '%Cruise%' AND people.born ='1962'
+    ) 
+ORDER BY ratings.votes DESC 
+LIMIT 10;
